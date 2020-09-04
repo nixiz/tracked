@@ -1,0 +1,13 @@
+C:/SW/tracked/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir
+C:/SW/tracked/out/build/x64-Debug/CMakeFiles/test.dir
+C:/SW/tracked/out/build/x64-Debug/CMakeFiles/install/local.dir
+C:/SW/tracked/out/build/x64-Debug/CMakeFiles/install.dir
+C:/SW/tracked/out/build/x64-Debug/CMakeFiles/edit_cache.dir
+C:/SW/tracked/out/build/x64-Debug/CMakeFiles/list_install_components.dir
+C:/SW/tracked/out/build/x64-Debug/test/CMakeFiles/trackedTests.dir
+C:/SW/tracked/out/build/x64-Debug/test/CMakeFiles/rebuild_cache.dir
+C:/SW/tracked/out/build/x64-Debug/test/CMakeFiles/test.dir
+C:/SW/tracked/out/build/x64-Debug/test/CMakeFiles/install/local.dir
+C:/SW/tracked/out/build/x64-Debug/test/CMakeFiles/install.dir
+C:/SW/tracked/out/build/x64-Debug/test/CMakeFiles/edit_cache.dir
+C:/SW/tracked/out/build/x64-Debug/test/CMakeFiles/list_install_components.dir

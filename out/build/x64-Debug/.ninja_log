@@ -1,0 +1,5 @@
+# ninja log v5
+0	1115	620929439	test/CMakeFiles/trackedTests.dir/src/tracked_test.cpp.obj	d1d8633b6cbf2353
+1116	1861	620929440	test/trackedTests.exe	8410ffe34f47f9d0
+1	929	620934616	test/CMakeFiles/trackedTests.dir/src/tracked_test.cpp.obj	d1d8633b6cbf2353
+929	3101	620934616	test/trackedTests.exe	8410ffe34f47f9d0
