@@ -1,5 +1,6 @@
 #pragma once
 #include <cassert>
+#include <exception>
 
 namespace policy
 {
@@ -15,14 +16,14 @@ namespace policy
       static void check(bool res) { assert(res); }
     };
 
-    struct throw_on_exception
+    template <class exc = std::exception>
+    struct throw_on_exception : public exc
     {
+      using exception_type = exc;
       static void check(bool res)
       {
-        // TODO(oguzhank) : think how to make decorated exception throwing
-        if (!res)
-        {
-          throw res;
+        if (!res) {
+          throw exception_type();
         }
       }
     };

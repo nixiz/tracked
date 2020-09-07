@@ -15,7 +15,7 @@ TEST(TmpAddTest, CheckValues)
 template <int times, class Deleter = dtl::default_delete<int>>
 using times_tracked = tracked_ptr<int, tracked_traits<int, Deleter, policy::exceptions::assert_on_exception>, policy::should_use_min_times<times>::template type>;
 
-template <typename T, class Exception = policy::exceptions::default_do_nothing>
+template<typename T, class Exception = policy::exceptions::throw_on_exception<>>
 using main_thread_tracked = tracked_ptr<T, tracked_traits<T, Exception>, policy::must_accessed_by_main_thread>;
 
 class MyClass

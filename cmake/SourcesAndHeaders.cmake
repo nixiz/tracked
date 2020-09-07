@@ -3,8 +3,8 @@ set(sources
 )
 
 # set(exe_sources
-# 		src/main.cpp
-# 		${sources}
+# 	src/tracked_usage.cpp
+# 	${sources}
 # )
 
 set(headers
@@ -12,6 +12,6 @@ set(headers
     include/tracked/policy/exceptions.hpp
     include/tracked/policy/usage.hpp
     include/tracked/policy/all_policies.hpp
-    include/tracked/tracked_base.hpp
+    include/tracked/tracked_detail.hpp
     include/tracked/tracked.hpp
 )

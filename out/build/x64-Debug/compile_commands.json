@@ -1,7 +1,13 @@
 [
 {
   "directory": "C:/SW/tracked/out/build/x64-Debug",
-  "command": "C:\\PROGRA~2\\MICROS~1\\2019\\COMMUN~1\\VC\\Tools\\MSVC\\1427~1.291\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -DGTEST_LINKED_AS_SHARED_LIBRARY=1 -I..\\..\\..\\include -ID:\\ndi\\vcpkg\\installed\\x64-windows\\include  /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd   /W4 /w14242 /w14254 /w14263 /w14265 /w14287 /we4289 /w14296 /w14311 /w14545 /w14546 /w14547 /w14549 /w14555 /w14619 /w14640 /w14826 /w14905 /w14906 /w14928 /permissive- -std:c++latest /Fotest\\CMakeFiles\\trackedTests.dir\\src\\tracked_test.cpp.obj /FdTARGET_COMPILE_PDB /FS -c C:\\SW\\tracked\\test\\src\\tracked_test.cpp",
+  "command": "C:\\PROGRA~2\\MICROS~1\\2019\\COMMUN~1\\VC\\Tools\\MSVC\\1427~1.291\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -DGTEST_LINKED_AS_SHARED_LIBRARY=1 -I..\\..\\..\\include -ID:\\ndi\\vcpkg\\installed\\x64-windows\\include  /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd   /W4 /w14242 /w14254 /w14263 /w14265 /w14287 /we4289 /w14296 /w14311 /w14545 /w14546 /w14547 /w14549 /w14555 /w14619 /w14640 /w14826 /w14905 /w14906 /w14928 /permissive- -std:c++17 /Fotest\\CMakeFiles\\trackedTests.dir\\src\\tracked_test.cpp.obj /FdTARGET_COMPILE_PDB /FS -c C:\\SW\\tracked\\test\\src\\tracked_test.cpp",
   "file": "C:/SW/tracked/test/src/tracked_test.cpp"
+},
+
+{
+  "directory": "C:/SW/tracked/out/build/x64-Debug",
+  "command": "C:\\PROGRA~2\\MICROS~1\\2019\\COMMUN~1\\VC\\Tools\\MSVC\\1427~1.291\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -DGTEST_LINKED_AS_SHARED_LIBRARY=1 -I..\\..\\..\\include -ID:\\ndi\\vcpkg\\installed\\x64-windows\\include  /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd   /W4 /w14242 /w14254 /w14263 /w14265 /w14287 /we4289 /w14296 /w14311 /w14545 /w14546 /w14547 /w14549 /w14555 /w14619 /w14640 /w14826 /w14905 /w14906 /w14928 /permissive- -std:c++17 /Fotest\\CMakeFiles\\trackedTests.dir\\src\\exception_policy_tests.cpp.obj /FdTARGET_COMPILE_PDB /FS -c C:\\SW\\tracked\\test\\src\\exception_policy_tests.cpp",
+  "file": "C:/SW/tracked/test/src/exception_policy_tests.cpp"
 }
 ]
