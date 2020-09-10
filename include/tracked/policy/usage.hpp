@@ -2,9 +2,11 @@
 #include "exceptions.hpp"
 
 namespace policy {
-  template<class derived>
+  template<template <class> class derived_t, class Ex>
   struct simple_usage {
-    ~simple_usage()
+    using derived = derived_t<Ex>;
+
+    ~simple_usage() noexcept(noexcept(Ex::check(false)))
     {
       static_cast<derived *>(this)->check();
     }
@@ -20,7 +22,7 @@ namespace policy {
 
   template<class Exception>
   struct must_be_used 
-    : public simple_usage<must_be_used<Exception>> {
+    : public simple_usage<must_be_used, Exception> {
     void check()
     {
       Exception::check(this->use_count != 0);
@@ -30,7 +32,7 @@ namespace policy {
   template<std::size_t Times>
   struct should_use_min_times {
     template<class Exception>
-    struct type : public simple_usage<type<Exception>> {
+    struct type : public simple_usage<type, Exception> {
       void check() const
       {
         Exception::check(this->use_count >= Times);
@@ -42,21 +44,25 @@ namespace policy {
   struct should_use_max_times {
     template<class Exception>
     struct type {
-      ~type()
+      ~type() noexcept(noexcept(Exception::check(false)))
       {
-        Exception::check(use_count <= Times);
+        if constexpr (!err_on_exceed) {
+          Exception::check(use_count <= Times);
+        }
       }
 
       void apply() const
       {
         ++use_count;
         if constexpr (err_on_exceed) {
-          Exception::check(use_count > Times);
+          has_exceeded = use_count > Times;
+          Exception::check(!has_exceeded);
         }
       }
 
      protected:
       mutable std::size_t use_count{ 0 };
+      mutable bool has_exceeded{ false };
     };
   };
 }  // namespace policy

@@ -5,10 +5,11 @@ namespace policy {
 
   template<class Exception>
   struct must_accessed_by_single_thread {
-    explicit must_accessed_by_single_thread() : owner_thread_id{ std::this_thread::get_id() } { }
+    explicit must_accessed_by_single_thread() 
+      : owner_thread_id{ std::this_thread::get_id() } { }
     ~must_accessed_by_single_thread() = default;
 
-    void apply() const
+    void apply() const noexcept(false)
     {
       auto res = owner_thread_id == std::this_thread::get_id();
       Exception::check(res);

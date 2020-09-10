@@ -12,7 +12,7 @@ TEST(TmpAddTest, CheckValues)
   EXPECT_TRUE(true);
 }
 
-template <int times, class Deleter = dtl::default_delete<int>>
+template <int times, class Deleter = dtl::default_deleter<int>>
 using times_tracked = tracked_ptr<int, tracked_traits<int, Deleter, policy::exceptions::assert_on_exception>, policy::should_use_min_times<times>::template type>;
 
 template<typename T, class Exception = policy::exceptions::throw_on_exception<>>

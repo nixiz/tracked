@@ -5,7 +5,7 @@
 
 template<
   class Type, 
-  class Deleter = dtl::default_delete<Type>, 
+  class Deleter = dtl::default_deleter<Type>, 
   class ExceptionPolicy = policy::exceptions::default_do_nothing>
 struct tracked_traits {
   using deleter          = Deleter;
@@ -21,20 +21,20 @@ class tracked_ptr final : public Options<typename Traits::exception_policy>... {
  public:
   using element_type     = Type;
   using deleter_type     = typename Traits::deleter;
-  using pointer          = typename dtl::_Get_deleter_pointer_type<Type, remove_reference_t<deleter_type>>::type;
+  using pointer          = typename dtl::get_deleter_pointer_type<Type, remove_reference_t<deleter_type>>::type;
   using exception_policy = typename Traits::exception_policy;
 
-  template<class _Dx2 = deleter_type, dtl::_Unique_ptr_enable_default_t<_Dx2> = 0>
+  template<class _Dx2 = deleter_type, dtl::tracked_ptr_enable_default_t<_Dx2> = 0>
   constexpr tracked_ptr() noexcept : my_pair(dtl::zero_then_variadic_args_t())
   {
   }
 
-  template<class _Dx2 = deleter_type, dtl::_Unique_ptr_enable_default_t<_Dx2> = 0>
+  template<class _Dx2 = deleter_type, dtl::tracked_ptr_enable_default_t<_Dx2> = 0>
   constexpr tracked_ptr(nullptr_t) noexcept : my_pair(dtl::zero_then_variadic_args_t())
   {
   }
 
-  template<class _Dx2 = deleter_type, dtl::_Unique_ptr_enable_default_t<_Dx2> = 0>
+  template<class _Dx2 = deleter_type, dtl::tracked_ptr_enable_default_t<_Dx2> = 0>
   explicit tracked_ptr(pointer _Ptr) noexcept : my_pair(dtl::zero_then_variadic_args_t(), _Ptr)
   {
   }
@@ -56,6 +56,7 @@ class tracked_ptr final : public Options<typename Traits::exception_policy>... {
 
   tracked_ptr(tracked_ptr&& _Right) noexcept
       : my_pair(dtl::one_then_variadic_args_t(), forward<deleter_type>(_Right.get_deleter()), _Right.release())
+      , Options<typename Traits::exception_policy>(std::move(_Right))...
   {
   }
 
@@ -73,6 +74,7 @@ class tracked_ptr final : public Options<typename Traits::exception_policy>... {
 
   tracked_ptr& operator=(tracked_ptr&& _Right) noexcept
   {
+    (Options<exception_policy>::operator=(std::move(_Right)), ...);
     if (this != addressof(_Right)) {
       reset(_Right.release());
       my_pair.get_deleter() = forward<deleter_type>(_Right.my_pair.get_deleter());
@@ -86,38 +88,38 @@ class tracked_ptr final : public Options<typename Traits::exception_policy>... {
     std::swap(my_pair.get_deleter(), _Right.my_pair.get_deleter());
   }
 
-  ~tracked_ptr() noexcept
+  ~tracked_ptr() noexcept(may_throw)
   {
     if (my_pair.pointer) {
       my_pair.get_deleter()(my_pair.pointer);
     }
   }
 
-  [[nodiscard]] deleter_type& get_deleter() noexcept
+  [[nodiscard]] deleter_type& get_deleter() noexcept(may_throw)
   {
     return my_pair.get_deleter();
   }
 
-  [[nodiscard]] const deleter_type& get_deleter() const noexcept
+  [[nodiscard]] const deleter_type& get_deleter() const noexcept(may_throw)
   {
     return my_pair.get_deleter();
   }
 
-  [[nodiscard]] add_lvalue_reference_t<Type> operator*() const noexcept /* strengthened */
+  [[nodiscard]] add_lvalue_reference_t<Type> operator*() const noexcept(may_throw) /* strengthened */
   {
     // call every options apply method.
     (Options<exception_policy>::apply(), ...);
     return *my_pair.pointer;
   }
 
-  [[nodiscard]] pointer operator->() const noexcept
+  [[nodiscard]] pointer operator->() const noexcept(may_throw)
   {
     // call every options apply method.
     (Options<exception_policy>::apply(), ...);
     return my_pair.pointer;
   }
 
-  [[nodiscard]] pointer get() const noexcept
+  [[nodiscard]] pointer get() const noexcept(may_throw)
   {
     // call every options apply method.
     (Options<exception_policy>::apply(), ...);
@@ -134,7 +136,7 @@ class tracked_ptr final : public Options<typename Traits::exception_policy>... {
     return std::exchange(my_pair.pointer, pointer());
   }
 
-  void reset(pointer _Ptr = pointer()) noexcept
+  void reset(pointer _Ptr = pointer()) noexcept(may_throw)
   {
     pointer old = std::exchange(my_pair.pointer, _Ptr);
     if (old) {
@@ -149,6 +151,7 @@ class tracked_ptr final : public Options<typename Traits::exception_policy>... {
   template<class Type, class Trait, template<class> class... Options>
   friend class tracked_ptr;
   dtl::compressed_pair<deleter_type, pointer> my_pair;
+  constexpr static inline bool may_throw = noexcept(exception_policy::check(false));
 };
 
 template<class Type, class Deleter, class ExceptionPolicy, template<class> class... Options, class... Args>
@@ -159,9 +162,11 @@ template<class Type, class Deleter, class ExceptionPolicy, template<class> class
 }
 
 template<class Type, class ExceptionPolicy, template<class> class... Options, class... Args>
-[[nodiscard]] tracked_ptr<Type, tracked_traits<Type, ExceptionPolicy>, Options...> make_tracked_ptr(Args&&... args)
+[[nodiscard]] tracked_ptr<Type, tracked_traits<Type, dtl::default_deleter<Type>, ExceptionPolicy>, Options...>
+make_tracked_ptr(Args&&... args)
 {
-  return tracked_ptr<Type, tracked_traits<Type, ExceptionPolicy>, Options...>(new Type(std::forward<Args>(args)...));
+  return tracked_ptr<Type, tracked_traits<Type, dtl::default_deleter<Type>, ExceptionPolicy>, Options...>(
+      new Type(std::forward<Args>(args)...));
 }
 
 template<class Type, template<class> class... Options, class... Args>

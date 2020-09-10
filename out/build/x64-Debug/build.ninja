@@ -131,6 +131,24 @@ build test\CMakeFiles\trackedTests.dir\src\exception_policy_tests.cpp.obj: CXX_C
   TARGET_COMPILE_PDB = test\CMakeFiles\trackedTests.dir\
   TARGET_PDB = test\trackedTests.pdb
 
+build test\CMakeFiles\trackedTests.dir\src\usage_policy_tests.cpp.obj: CXX_COMPILER__trackedTests_Debug ..\..\..\test\src\usage_policy_tests.cpp || cmake_object_order_depends_target_trackedTests_Debug
+  DEFINES = -DGTEST_LINKED_AS_SHARED_LIBRARY=1
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd   /W4 /w14242 /w14254 /w14263 /w14265 /w14287 /we4289 /w14296 /w14311 /w14545 /w14546 /w14547 /w14549 /w14555 /w14619 /w14640 /w14826 /w14905 /w14906 /w14928 /permissive- -std:c++17
+  INCLUDES = -I..\..\..\include -ID:\ndi\vcpkg\installed\x64-windows\include
+  OBJECT_DIR = test\CMakeFiles\trackedTests.dir
+  OBJECT_FILE_DIR = test\CMakeFiles\trackedTests.dir\src
+  TARGET_COMPILE_PDB = test\CMakeFiles\trackedTests.dir\
+  TARGET_PDB = test\trackedTests.pdb
+
+build test\CMakeFiles\trackedTests.dir\src\accessing_policy_tests.cpp.obj: CXX_COMPILER__trackedTests_Debug ..\..\..\test\src\accessing_policy_tests.cpp || cmake_object_order_depends_target_trackedTests_Debug
+  DEFINES = -DGTEST_LINKED_AS_SHARED_LIBRARY=1
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd   /W4 /w14242 /w14254 /w14263 /w14265 /w14287 /we4289 /w14296 /w14311 /w14545 /w14546 /w14547 /w14549 /w14555 /w14619 /w14640 /w14826 /w14905 /w14906 /w14928 /permissive- -std:c++17
+  INCLUDES = -I..\..\..\include -ID:\ndi\vcpkg\installed\x64-windows\include
+  OBJECT_DIR = test\CMakeFiles\trackedTests.dir
+  OBJECT_FILE_DIR = test\CMakeFiles\trackedTests.dir\src
+  TARGET_COMPILE_PDB = test\CMakeFiles\trackedTests.dir\
+  TARGET_PDB = test\trackedTests.pdb
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target trackedTests
@@ -139,7 +157,7 @@ build test\CMakeFiles\trackedTests.dir\src\exception_policy_tests.cpp.obj: CXX_C
 #############################################
 # Link the executable test\trackedTests.exe
 
-build test\trackedTests.exe: CXX_EXECUTABLE_LINKER__trackedTests_Debug test\CMakeFiles\trackedTests.dir\src\tracked_test.cpp.obj test\CMakeFiles\trackedTests.dir\src\exception_policy_tests.cpp.obj | D$:\ndi\vcpkg\installed\x64-windows\debug\lib\manual-link\gtest_maind.lib D$:\ndi\vcpkg\installed\x64-windows\debug\lib\gtestd.lib
+build test\trackedTests.exe: CXX_EXECUTABLE_LINKER__trackedTests_Debug test\CMakeFiles\trackedTests.dir\src\tracked_test.cpp.obj test\CMakeFiles\trackedTests.dir\src\exception_policy_tests.cpp.obj test\CMakeFiles\trackedTests.dir\src\usage_policy_tests.cpp.obj test\CMakeFiles\trackedTests.dir\src\accessing_policy_tests.cpp.obj | D$:\ndi\vcpkg\installed\x64-windows\debug\lib\manual-link\gtest_maind.lib D$:\ndi\vcpkg\installed\x64-windows\debug\lib\gtestd.lib
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = D:\ndi\vcpkg\installed\x64-windows\debug\lib\manual-link\gtest_maind.lib  D:\ndi\vcpkg\installed\x64-windows\debug\lib\gtestd.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
