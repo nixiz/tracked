@@ -9,7 +9,7 @@ namespace policy {
       : owner_thread_id{ std::this_thread::get_id() } { }
     ~must_accessed_by_single_thread() = default;
 
-    void apply() const noexcept(false)
+    void apply() const noexcept(noexcept(Exception::check(false)))
     {
       auto res = owner_thread_id == std::this_thread::get_id();
       Exception::check(res);

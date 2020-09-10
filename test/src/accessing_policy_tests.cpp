@@ -98,3 +98,15 @@ TEST(AccessingPolicy, AccessedFromMainThread)
   auto ptr = std::move(helper.get_tracked_ptr_from_thread());
   ASSERT_NO_THROW(ptr->doubled(1));
 }
+
+TEST(AccessingPolicy, AccessedFromMainThread_NoThrow)
+{
+  auto test_ptr =
+      make_tracked_ptr<TestingClass, exceptions::default_do_nothing, must_accessed_by_main_thread>();
+  ASSERT_NO_THROW(test_ptr->doubled(1));
+  auto test = [&test_ptr] {
+    std::thread th([&] { ASSERT_NO_THROW(test_ptr->doubled(0)); });
+    th.join();
+  };
+  test();
+}

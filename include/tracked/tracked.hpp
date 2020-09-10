@@ -88,38 +88,38 @@ class tracked_ptr final : public Options<typename Traits::exception_policy>... {
     std::swap(my_pair.get_deleter(), _Right.my_pair.get_deleter());
   }
 
-  ~tracked_ptr() noexcept(may_throw)
+  ~tracked_ptr() noexcept(is_noexcept)
   {
     if (my_pair.pointer) {
       my_pair.get_deleter()(my_pair.pointer);
     }
   }
 
-  [[nodiscard]] deleter_type& get_deleter() noexcept(may_throw)
+  [[nodiscard]] deleter_type& get_deleter() noexcept(is_noexcept)
   {
     return my_pair.get_deleter();
   }
 
-  [[nodiscard]] const deleter_type& get_deleter() const noexcept(may_throw)
+  [[nodiscard]] const deleter_type& get_deleter() const noexcept(is_noexcept)
   {
     return my_pair.get_deleter();
   }
 
-  [[nodiscard]] add_lvalue_reference_t<Type> operator*() const noexcept(may_throw) /* strengthened */
+  [[nodiscard]] add_lvalue_reference_t<Type> operator*() const noexcept(is_noexcept) /* strengthened */
   {
     // call every options apply method.
     (Options<exception_policy>::apply(), ...);
     return *my_pair.pointer;
   }
 
-  [[nodiscard]] pointer operator->() const noexcept(may_throw)
+  [[nodiscard]] pointer operator->() const noexcept(is_noexcept)
   {
     // call every options apply method.
     (Options<exception_policy>::apply(), ...);
     return my_pair.pointer;
   }
 
-  [[nodiscard]] pointer get() const noexcept(may_throw)
+  [[nodiscard]] pointer get() const noexcept(is_noexcept)
   {
     // call every options apply method.
     (Options<exception_policy>::apply(), ...);
@@ -136,7 +136,7 @@ class tracked_ptr final : public Options<typename Traits::exception_policy>... {
     return std::exchange(my_pair.pointer, pointer());
   }
 
-  void reset(pointer _Ptr = pointer()) noexcept(may_throw)
+  void reset(pointer _Ptr = pointer()) noexcept(is_noexcept)
   {
     pointer old = std::exchange(my_pair.pointer, _Ptr);
     if (old) {
@@ -151,7 +151,7 @@ class tracked_ptr final : public Options<typename Traits::exception_policy>... {
   template<class Type, class Trait, template<class> class... Options>
   friend class tracked_ptr;
   dtl::compressed_pair<deleter_type, pointer> my_pair;
-  constexpr static inline bool may_throw = noexcept(exception_policy::check(false));
+  constexpr static inline bool is_noexcept = noexcept(exception_policy::check(false));
 };
 
 template<class Type, class Deleter, class ExceptionPolicy, template<class> class... Options, class... Args>

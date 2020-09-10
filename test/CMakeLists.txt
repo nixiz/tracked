@@ -20,6 +20,8 @@ set(test_sources
   src/exception_policy_tests.cpp
   src/usage_policy_tests.cpp
   src/accessing_policy_tests.cpp
+  src/multiple_policy_tests.cpp
+  src/polymorphic_usage_tests.cpp
 )
 add_executable(${PROJECT_NAME} ${test_sources})
 
