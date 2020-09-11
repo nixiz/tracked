@@ -59,7 +59,7 @@ See details at [CONTRIBUTING.md](https://github.com/nixiz/tracked/blob/master/CO
 [License](LICENSE).
 
 * [ ] To the best of my knowledge, the proposed patch is not based on a code under
-GPL or other license that is incompatible with [INSERT PROJECT NAME]
+GPL or other license that is incompatible with Tracked Library
 
 * [ ] The PR is proposed to proper branch
 
