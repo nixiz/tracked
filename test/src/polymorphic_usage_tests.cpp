@@ -56,3 +56,13 @@ TEST(PolymorphicUsageTest, PolicyChanging)
   }
   ASSERT_TRUE(catched_true_exception);
 }
+
+TEST(PolymorphicUsageTest, PolicyChangeWith_MakeTrackedPtr)
+{
+  auto first_policy_ptr = make_tracked_ptr<TestingClass, exceptions::throw_on_exception<test_exception>,
+                                           must_accessed_by_single_thread, should_use_max_times<2>::type>();
+  auto TestingClassAdd  = first_policy_ptr.get();
+
+  auto relaxed_ptr = make_tracked_ptr<TestingClass>(std::move(first_policy_ptr));
+  ASSERT_EQ(TestingClassAdd, relaxed_ptr.get());
+}

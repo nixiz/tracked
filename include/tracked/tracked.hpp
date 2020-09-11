@@ -174,3 +174,27 @@ template<class Type, template<class> class... Options, class... Args>
 {
   return tracked_ptr<Type, tracked_traits<Type>, Options...>(new Type(std::forward<Args>(args)...));
 }
+
+// TODO(oguzhank): find an easy way to call make_tracked_ptr(...) with an argument any other tracked_ptr.
+// until that use these not funny way to support move tracked_ptr to another tracked_ptr specializations.
+template<class Type, class T2, class D2, class E2, template<class> class... Options2>
+[[nodiscard]] tracked_ptr<Type, tracked_traits<Type>> make_tracked_ptr(
+    tracked_ptr<T2, tracked_traits<T2, D2, E2>, Options2...>&& other)
+{
+  return tracked_ptr<Type, tracked_traits<Type>>(std::move(other));
+}
+
+template<class Type, template<class> class Option1, class T2, class D2, class E2, template<class> class... Options2>
+[[nodiscard]] tracked_ptr<Type, tracked_traits<Type>, Option1> make_tracked_ptr(
+    tracked_ptr<T2, tracked_traits<T2, D2, E2>, Options2...>&& other)
+{
+  return tracked_ptr<Type, tracked_traits<Type>, Option1>(std::move(other));
+}
+
+template<class Type, template<class> class Option1, template<class> class Option2, class T2, class D2, class E2,
+         template<class> class... Options2>
+[[nodiscard]] tracked_ptr<Type, tracked_traits<Type>, Option1, Option2> make_tracked_ptr(
+    tracked_ptr<T2, tracked_traits<T2, D2, E2>, Options2...>&& other)
+{
+  return tracked_ptr<Type, tracked_traits<Type>, Option1, Option2>(std::move(other));
+}
