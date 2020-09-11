@@ -88,38 +88,38 @@ class tracked_ptr final : public Options<typename Traits::exception_policy>... {
     std::swap(my_pair.get_deleter(), _Right.my_pair.get_deleter());
   }
 
-  ~tracked_ptr() noexcept(is_noexcept)
+  ~tracked_ptr() noexcept(tracked_ptr::is_noexcept)
   {
     if (my_pair.pointer) {
       my_pair.get_deleter()(my_pair.pointer);
     }
   }
 
-  [[nodiscard]] deleter_type& get_deleter() noexcept(is_noexcept)
+  [[nodiscard]] deleter_type& get_deleter() noexcept(tracked_ptr::is_noexcept)
   {
     return my_pair.get_deleter();
   }
 
-  [[nodiscard]] const deleter_type& get_deleter() const noexcept(is_noexcept)
+  [[nodiscard]] const deleter_type& get_deleter() const noexcept(tracked_ptr::is_noexcept)
   {
     return my_pair.get_deleter();
   }
 
-  [[nodiscard]] add_lvalue_reference_t<Type> operator*() const noexcept(is_noexcept) /* strengthened */
+  [[nodiscard]] add_lvalue_reference_t<Type> operator*() const noexcept(tracked_ptr::is_noexcept) /* strengthened */
   {
     // call every options apply method.
     (Options<exception_policy>::apply(), ...);
     return *my_pair.pointer;
   }
 
-  [[nodiscard]] pointer operator->() const noexcept(is_noexcept)
+  [[nodiscard]] pointer operator->() const noexcept(tracked_ptr::is_noexcept)
   {
     // call every options apply method.
     (Options<exception_policy>::apply(), ...);
     return my_pair.pointer;
   }
 
-  [[nodiscard]] pointer get() const noexcept(is_noexcept)
+  [[nodiscard]] pointer get() const noexcept(tracked_ptr::is_noexcept)
   {
     // call every options apply method.
     (Options<exception_policy>::apply(), ...);
@@ -136,7 +136,7 @@ class tracked_ptr final : public Options<typename Traits::exception_policy>... {
     return std::exchange(my_pair.pointer, pointer());
   }
 
-  void reset(pointer _Ptr = pointer()) noexcept(is_noexcept)
+  void reset(pointer _Ptr = pointer()) noexcept(tracked_ptr::is_noexcept)
   {
     pointer old = std::exchange(my_pair.pointer, _Ptr);
     if (old) {
