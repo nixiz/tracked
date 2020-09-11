@@ -115,15 +115,15 @@ configuration for which to run tests for.
 
 ### Tests and Usage Examples
 
-* [Exception Policy Tests](test/src/exception_policy_tests.cpp)
+* [Exception Policy Usage](test/src/exception_policy_tests.cpp)
 
-* [Accessing Policy Tests](test/src/accessing_policy_tests.cpp)
+* [Accessing Policy Usage](test/src/accessing_policy_tests.cpp)
 
-* [Usage Policy Tests](test/src/usage_policy_tests.cpp)
+* [Usage Policy Usage](test/src/usage_policy_tests.cpp)
 
-* [Multiple Policy Tests](test/src/multiple_policy_tests.cpp)
+* [Multiple Policy Usage](test/src/multiple_policy_tests.cpp)
 
-* [Policy Changing Tests](test/src/polymorphic_usage_tests.cpp)
+* [Policy Changing](test/src/polymorphic_usage_tests.cpp)
 
 ## Contributing
 
