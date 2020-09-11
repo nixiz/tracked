@@ -42,8 +42,8 @@ endif()
 # Enable package managers
 #
 
-include(cmake/Conan.cmake)
-include(cmake/Vcpkg.cmake)
+# include(cmake/Conan.cmake)
+# include(cmake/Vcpkg.cmake)
 
 #
 # Create library, setup header and source files
@@ -93,7 +93,7 @@ verbose_message("Applied compiler warnings. Using standard ${CXX_STANDARD}.\n")
 # Enable Doxygen
 #
 
-include(cmake/Doxygen.cmake)
+# include(cmake/Doxygen.cmake)
 
 #
 # Set the build/user include directories
