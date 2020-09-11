@@ -111,7 +111,19 @@ for unit testing. Unit testing can be disabled in the options, by setting the
 `ENABLE_UNIT_TESTING` (from
 [cmake/StandardSettings.cmake](cmake/StandardSettings.cmake)) to be false. To run
 the tests, simply use CTest, from the build directory, passing the desire
-configuration for which to run tests for. An example of this procedure is:
+configuration for which to run tests for.
+
+### Tests and Usage Examples
+
+* [Exception Policy Tests](test/src/exception_policy_tests.cpp)
+
+* [Accessing Policy Tests](test/src/accessing_policy_tests.cpp)
+
+* [Usage Policy Tests](test/src/usage_policy_tests.cpp)
+
+* [Multiple Policy Tests](test/src/multiple_policy_tests.cpp)
+
+* [Policy Changing Tests](test/src/polymorphic_usage_tests.cpp)
 
 ## Contributing
 

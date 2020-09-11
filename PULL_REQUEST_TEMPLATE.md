@@ -49,13 +49,13 @@ Fixes #XXXX
 Demonstrate the code is solid. Example: The exact commands you ran and their output,
 screenshots / videos if the pull request changes UI.
 
-*Make sure tests pass on all of the [relevant CI workflows](https://github.com/filipdutescu/modern-cpp-template/actions).*
+*Make sure tests pass on all of the [relevant CI workflows](https://github.com/nixiz/tracked/actions).*
 
 ### Pull Request Readiness Checklist
 
-See details at [CONTRIBUTING.md](https://github.com/filipdutescu/modern-cpp-template/blob/master/CONTRIBUTING.md).
+See details at [CONTRIBUTING.md](https://github.com/nixiz/tracked/blob/master/CONTRIBUTING.md).
 
-* [ ] I agree to contribute to the project under [INSERT PROJECT NAME] (Unlicense)
+* [ ] I agree to contribute to the project under [tracked] (MIT)
 [License](LICENSE).
 
 * [ ] To the best of my knowledge, the proposed patch is not based on a code under
