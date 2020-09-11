@@ -148,7 +148,7 @@ class tracked_ptr final : public Options<typename Traits::exception_policy>... {
   tracked_ptr& operator=(const tracked_ptr&) = delete;
 
  private:
-  template<class Type, class Trait, template<class> class... Options>
+  template<class Ty, class Tr, template<class> class... Ops>
   friend class tracked_ptr;
   dtl::compressed_pair<deleter_type, pointer> my_pair;
   constexpr static inline bool is_noexcept = noexcept(exception_policy::check(false));
