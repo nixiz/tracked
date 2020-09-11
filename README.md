@@ -6,9 +6,9 @@
 
 # Tracked - Runtime Object Analyze and Tracker
 
-This is a header-only C++17 library enables to track object instances by various policies and gives user to exception control on policy break.
+This is a header-only  C++17 library enables to track object instances with varied policies and gives you to control exceptions on policy rule break.
 
-Tracked pointer is based on std::unique_ptr and extend it with policy control.
+Tracked pointer is based on std::unique_ptr and with policy based design, it can be extend for your own needs
 
 ## Simple Usage
 
