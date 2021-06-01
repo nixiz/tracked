@@ -6,6 +6,7 @@
 #include "tracked/tracked.hpp"
 
 using namespace policy;
+using namespace std;
 
 class TestingClass {
  public:
@@ -40,8 +41,7 @@ TEST(PolymorphicUsageTest, PolicyChanging)
 
   tracked_ptr<TestingClass, tracked_traits<TestingClass>> relaxed_ptr = std::move(first_policy_ptr);
 
-  std::thread th([&] { ASSERT_NO_THROW(relaxed_ptr->doubled(3));
-  });
+  std::thread th([&] { ASSERT_NO_THROW(relaxed_ptr->doubled(3)); });
   th.join();
   ASSERT_NO_THROW(relaxed_ptr->doubled(4));
   bool catched_true_exception = false;

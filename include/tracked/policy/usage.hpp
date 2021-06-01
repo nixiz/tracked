@@ -1,4 +1,5 @@
 #pragma once
+#include "policy_utils.hpp"
 #include "exceptions.hpp"
 
 namespace policy {
@@ -6,13 +7,11 @@ namespace policy {
   struct simple_usage {
     using derived = derived_t<Ex>;
 
-    ~simple_usage() noexcept(noexcept(Ex::check(false)))
-    {
-      static_cast<derived *>(this)->check();
+    void destruct() const noexcept(noexcept(Ex::check(false))) {
+      static_cast<derived const&>(*this).check();
     }
 
-    void apply() const
-    {
+    void dereference() const { 
       ++use_count;
     }
 
@@ -23,7 +22,7 @@ namespace policy {
   template<class Exception>
   struct must_be_used 
     : public simple_usage<must_be_used, Exception> {
-    void check()
+    void check() const
     {
       Exception::check(this->use_count != 0);
     }
@@ -44,15 +43,14 @@ namespace policy {
   struct should_use_max_times {
     template<class Exception>
     struct type {
-      ~type() noexcept(noexcept(Exception::check(false)))
-      {
+
+      void destruct() const checked_noexcept { 
         if constexpr (!err_on_exceed) {
           Exception::check(use_count <= Times);
         }
       }
-
-      void apply() const
-      {
+      void dereference() const checked_noexcept 
+      { 
         ++use_count;
         if constexpr (err_on_exceed) {
           has_exceeded = use_count > Times;

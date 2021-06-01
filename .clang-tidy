@@ -1,5 +1,11 @@
----
-Checks: '*,-fuchsia-*,-google-*,-zircon-*,-abseil-*,-modernize-use-trailing-return-type,-llvm-*'
-WarningsAsErrors: '*'
-HeaderFilterRegex: ''
-FormatStyle: none
+Checks: '-*,google-*,readability-identifier-naming'
+CheckOptions:
+    - key: bugprone-argument-comment.StrictMode
+      value: 1
+    - key: bugprone-exception-escape.FunctionsThatShouldNotThrow
+      value: WinMain,SDL_main
+    - key: misc-non-private-member-variables-in-classes.IgnoreClassesWithAllMemberVariablesBeingPublic
+      value: 1
+    - key: readability-identifier-naming.ClassCase
+      value: lower_case
+FormatStyle: 'file'

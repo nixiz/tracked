@@ -110,3 +110,17 @@ TEST(AccessingPolicy, AccessedFromMainThread_NoThrow)
   };
   test();
 }
+
+TEST(AccessingPolicy, MustDestructBySameThread)
+{
+  auto test_ptr = make_tracked_ptr<
+    TestingClass, 
+    exceptions::throw_on_exception<test_exception>, 
+    must_destruct_by_same_thread_constructed>();
+  
+  ASSERT_NO_THROW(test_ptr->doubled(1));
+  std::thread th([&] { 
+    ASSERT_THROW(test_ptr.reset(), test_exception); 
+  });
+  th.join();
+}
