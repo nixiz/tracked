@@ -1,6 +1,7 @@
 [Bb]uild/*
 [Dd]ocs/*
 CMakeCache.*
+CMakeSettings.json
 CMakeFiles/*
 [Tt]esting/*
 

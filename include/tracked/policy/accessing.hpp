@@ -34,7 +34,8 @@ namespace policy {
   const auto main_thread_id = std::this_thread::get_id();
   template<class Exception>
   struct must_accessed_by_main_thread : must_accessed_by_single_thread<Exception> {
-    explicit must_accessed_by_main_thread() : must_accessed_by_single_thread<Exception>(main_thread_id) { }
+    explicit must_accessed_by_main_thread() 
+      : must_accessed_by_single_thread<Exception>(main_thread_id) { }
   };
 
   template<class Exception>

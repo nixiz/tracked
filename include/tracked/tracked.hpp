@@ -57,8 +57,9 @@ class tracked_ptr final : public Options<typename Traits::exception_policy>... {
   tracked_ptr(pointer, std::remove_reference_t<deleter_type>&&) = delete;
 
   tracked_ptr(tracked_ptr&& _Right) noexcept
-      : my_pair(dtl::one_then_variadic_args_t(), std::forward<deleter_type>(_Right.get_deleter()), _Right.release())
-      , Options<typename Traits::exception_policy>(std::move(_Right))...
+      : Options<typename Traits::exception_policy>(std::move(_Right))...
+      , my_pair(dtl::one_then_variadic_args_t(), 
+                std::forward<deleter_type>(_Right.get_deleter()), _Right.release())
   {
   }
 
