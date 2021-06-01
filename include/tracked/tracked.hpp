@@ -29,7 +29,7 @@ class tracked_ptr final : public Options<typename Traits::exception_policy>... {
   }
 
   template<class _Dx2 = deleter_type, dtl::tracked_ptr_enable_default_t<_Dx2> = 0>
-  explicit constexpr tracked_ptr(nullptr_t) noexcept : my_pair(dtl::zero_then_variadic_args_t())
+  constexpr explicit tracked_ptr(std::nullptr_t) noexcept : my_pair(dtl::zero_then_variadic_args_t())
   {
   }
 
