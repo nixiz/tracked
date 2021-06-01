@@ -1,4 +1,4 @@
-[![Actions Status](https://github.com/nixiz/tracked/workflows/MacOS/badge.svg)](https://github.com/nixiz/tracked/actions)
+[![Actions Status](https://github.com/nixiz/tracked/workflows/MacOS/badge.svg)](https://github.com/nixiz/tracked/actions/workflows/macos.yml)
 [![Actions Status](https://github.com/nixiz/tracked/workflows/Windows/badge.svg)](https://github.com/nixiz/tracked/actions)
 [![Actions Status](https://github.com/nixiz/tracked/workflows/Ubuntu/badge.svg)](https://github.com/nixiz/tracked/actions)
 [![codecov](https://codecov.io/gh/nixiz/tracked/branch/master/graph/badge.svg)](https://codecov.io/gh/nixiz/tracked)
